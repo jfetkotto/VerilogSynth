@@ -90,7 +90,7 @@ if __name__ == '__main__':
                 f.write('%s\n' % v)
 
         f.close()
-        
+
     # Convert time to sample for plotting address
     s = (t/(2*np.pi))*((2**BIT_DEPTH)-1)
     plot(s,y,args.stem)
