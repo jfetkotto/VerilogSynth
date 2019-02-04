@@ -24,9 +24,6 @@ module synthyboy(
 
   output o_spi_miso;
   output [15:0] o_data;
-
-
-  reg [23:0] r_fcw = 24'hffffff;
   
   wire w_clk5;
   wire [15:0] w_addr;
