@@ -2,7 +2,7 @@
 * TITLE: synthyboy.v
 * AUTHOR: Sam Mitchell
 * DATE: Jan 2019
-* DESCRIPTION: Describes the architecture of the synth 
+* DESCRIPTION: Describes the architecture of the synth
 */
 
 module synthyboy(
@@ -16,7 +16,7 @@ module synthyboy(
 );
 
   input i_clk50mhz;
-  
+
   input [1:0] i_mux_sel;
   input i_spi_clk;
   input i_spi_mosi;
@@ -24,7 +24,7 @@ module synthyboy(
 
   output o_spi_miso;
   output [15:0] o_data;
-  
+
   wire w_clk5;
   wire [15:0] w_addr;
   wire [15:0] w_sine_to_mux;
@@ -42,6 +42,7 @@ module synthyboy(
   );
 
   spi_input SPI(
+    .i_sys_clk(i_clk50mhz),
     .i_spi_clk(i_spi_clk),
     .i_spi_mosi(i_spi_mosi),
     .i_spi_ss(i_spi_ss),
@@ -94,4 +95,3 @@ module synthyboy(
   );
 
 endmodule
-

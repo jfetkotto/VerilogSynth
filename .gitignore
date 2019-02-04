@@ -6,6 +6,7 @@ c5_pin_model_dump.txt
 output_files
 simulation
 *.qpf
+*.qws
 *.qsf
 *.bak
 *.wlf
