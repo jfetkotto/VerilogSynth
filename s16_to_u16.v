@@ -16,7 +16,7 @@ module s16_to_u16(
   output reg [15:0] o_u16;
 
   always @ (posedge i_clk) begin
-    o_u16 <= i_s16 + 32767;
+    o_u16 <= i_s16 + 16'd32767;
   end
 
 endmodule

@@ -1,6 +1,6 @@
 `timescale 1ns/100ps
 
-module square_wave_tb();
+module sine_lut_tb();
   
   reg r_clk5M = 0;
   reg [15:0] r_addr = 0;
@@ -8,7 +8,7 @@ module square_wave_tb();
 
   reg [15:0] r_counter = 0;
 
-  square_wave UUT(
+  sine_lut UUT(
     .i_clk(r_clk5M),
     .i_addr(r_addr),
     .o_data(w_data)

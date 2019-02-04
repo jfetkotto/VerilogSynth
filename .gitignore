@@ -1,5 +1,13 @@
 scripts/lutdata
 work
+incremental_db
+db
+c5_pin_model_dump.txt
+output_files
+simulation
+*.qpf
+*.qsf
+*.bak
 *.wlf
 *.mti
 *.mpf
