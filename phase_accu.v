@@ -13,16 +13,23 @@ module phase_accu(
 
   input i_clk5MHz;
   input [23:0] i_fcw;
-  output [15:0] o_16bit_addr;
+  output reg [15:0] o_16bit_addr;
 
   reg [23:0] r_fcw = 24'h000001;
   reg [31:0] r_count = 32'h00000000;
 
-  assign o_16bit_addr = r_count[31:16];
+  //assign o_16bit_addr = r_count[31:16];
+
+  always @ (r_count)
+  begin
+    o_16bit_addr <= r_count[31:16];
+  end
 
   always @ (i_fcw)
+  begin
     r_fcw <= i_fcw;
-
+  end
+  
   always @ (posedge i_clk5MHz)
   begin
     r_count <= r_count + r_fcw;

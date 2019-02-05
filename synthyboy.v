@@ -52,7 +52,7 @@ module synthyboy(
 
   phase_accu PHASE_ACCU(
     .i_clk5MHz(w_clk5),
-    .i_fcw({w_spi_to_fcw, 4'hffff}),
+    .i_fcw(24'hffffff),
     .o_16bit_addr(w_addr)
   );
 
