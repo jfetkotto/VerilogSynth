@@ -12,5 +12,6 @@ simulation
 *.wlf
 *.mti
 *.mpf
+*.vstf
 transcript
 tags

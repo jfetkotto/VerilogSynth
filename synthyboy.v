@@ -7,6 +7,7 @@
 
 module synthyboy(
   i_clk50mhz,
+  i_amp,
   i_mux_sel,
   i_spi_clk,
   i_spi_mosi,
@@ -17,10 +18,13 @@ module synthyboy(
 
   input i_clk50mhz;
 
+  input [15:0] i_amp;
+
   input [1:0] i_mux_sel;
   input i_spi_clk;
   input i_spi_mosi;
   input i_spi_ss;
+
 
   output o_spi_miso;
   output [15:0] o_data;
@@ -33,7 +37,9 @@ module synthyboy(
   wire [15:0] w_noise_to_mux;
   wire [15:0] w_mux_out;
 
-  wire [15:0] w_spi_to_fcw;
+  wire [15:0] w_convert_out;
+
+  wire [7:0] w_spi_to_fcw;
 
 
   clock_5MHz CLK5MHZ(
@@ -68,7 +74,14 @@ module synthyboy(
   s16_to_u16 S16_TO_U16(
     .i_clk(w_clk5),
     .i_s16(w_mux_out),
-    .o_u16(o_data)
+    .o_u16(w_convert_out)
+  );
+
+  amp AMP(
+    .i_clk(w_clk5),
+    .i_wave(w_convert_out),
+    .i_amp(i_amp),
+    .o_data(o_data)
   );
 
   sine_lut SINE(
