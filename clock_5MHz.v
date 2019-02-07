@@ -3,13 +3,13 @@
 * AUTHOR: Sam Mitchell
 * DATE: Jan 2019
 * DESCRIPTION: Divide 50Mhz input clock by 10 to produce 5MHz output clock
-* 
+*
 * TODO: Add ENABLE input
 *
 */
 
 module clock_5MHz(
-  i_clk50mhz, 
+  i_clk50mhz,
   o_clk5mhz
 );
 
@@ -23,7 +23,7 @@ module clock_5MHz(
 
   always @ (posedge i_clk50mhz)
   begin
-    if ( r_count == 4 ) 
+    if ( r_count == 4 )
     begin
       r_count <= 0;
       r_clk <= ~r_clk;
