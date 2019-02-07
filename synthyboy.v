@@ -20,7 +20,7 @@ module synthyboy(
 
   input [15:0] i_amp;
 
-  input [1:0] i_mux_sel;
+  input [2:0] i_mux_sel;
   input i_spi_clk;
   input i_spi_mosi;
   input i_spi_ss;
@@ -35,6 +35,7 @@ module synthyboy(
   wire [15:0] w_square_to_mux;
   wire [15:0] w_tri_to_mux;
   wire [15:0] w_noise_to_mux;
+  wire [15:0] w_saw_to_mux;
   wire [15:0] w_mux_out;
 
   wire [15:0] w_convert_out;
@@ -58,13 +59,14 @@ module synthyboy(
 
   phase_accu PHASE_ACCU(
     .i_clk5MHz(w_clk5),
-    .i_fcw(24'hffffff),
+    .i_fcw({w_spi_to_fcw,16'hffff}),
     .o_16bit_addr(w_addr)
   );
 
   wave_mux WAVE_MUX(
     .i_sel(i_mux_sel),
     .i_sine(w_sine_to_mux),
+    .i_saw(w_saw_to_mux),
     .i_square(w_square_to_mux),
     .i_tri(w_tri_to_mux),
     .i_noise(w_noise_to_mux),
@@ -80,7 +82,7 @@ module synthyboy(
   amp AMP(
     .i_clk(w_clk5),
     .i_wave(w_convert_out),
-    .i_amp(i_amp),
+    .i_amp(16'hffff),
     .o_data(o_data)
   );
 
@@ -88,6 +90,12 @@ module synthyboy(
     .i_clk(w_clk5),
     .i_addr(w_addr),
     .o_data(w_sine_to_mux)
+  );
+
+  saw_wave SAW(
+    .i_clk(w_clk5),
+    .i_addr(w_addr),
+    .o_data(w_saw_to_mux)
   );
 
   square_wave SQUARE(

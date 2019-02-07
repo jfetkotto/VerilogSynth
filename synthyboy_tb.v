@@ -4,7 +4,7 @@ module synthyboy_tb();
 
   reg clk50 = 0;
   reg [15:0] r_amp = 16'hffff;
-  reg [1:0] r_mux = 2'b11;
+  reg [2:0] r_mux = 3'b100;
 
   wire [15:0] data;
 
@@ -30,10 +30,11 @@ module synthyboy_tb();
 
   always
   begin
-    #100000 r_mux <= 2'b00;
-    #100000 r_mux <= 2'b01;
-    #100000 r_mux <= 2'b10;
-    #100000 r_mux <= 2'b11;
+    #100000 r_mux <= 3'b000;
+    #100000 r_mux <= 3'b001;
+    #100000 r_mux <= 3'b010;
+    #100000 r_mux <= 3'b011;
+    #100000 r_mux <= 3'b100;
   end
 
 endmodule

@@ -18,8 +18,6 @@ module phase_accu(
   reg [23:0] r_fcw = 24'h000001;
   reg [31:0] r_count = 32'h00000000;
 
-  //assign o_16bit_addr = r_count[31:16];
-
   always @ (r_count)
   begin
     o_16bit_addr <= r_count[31:16];
