@@ -5,7 +5,7 @@ module spi_input_tb();
   reg r_sys_clk = 0;
   reg r_spi_clk = 0;
   reg r_spi_mosi;
-  reg r_spi_ss;
+  reg r_spi_ss = 1;
   wire w_spi_miso;
   wire [7:0] w_data;
 
@@ -25,7 +25,11 @@ module spi_input_tb();
 
   //spi clock
   always begin
-    #52000 r_spi_clk <= !r_spi_clk;
+      #52000;
+      case (r_spi_ss) 
+        0 : r_spi_clk <= !r_spi_clk;
+        default : r_spi_clk <= 0;
+      endcase
   end
 
   always begin
