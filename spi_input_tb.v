@@ -37,7 +37,30 @@ module spi_input_tb();
     r_spi_ss <= 0;
     r_spi_mosi <= 1;
     #104000
+    r_spi_mosi <= 1;
+    #104000
     r_spi_mosi <= 0;
+    #104000
+    r_spi_mosi <= 1;
+    #104000
+    r_spi_mosi <= 1;
+    #104000
+    r_spi_mosi <= 1;
+    #104000
+    r_spi_mosi <= 1;
+    #104000
+    r_spi_mosi <= 0;
+    #104000
+    r_spi_mosi <= 1;
+    r_spi_ss <= 1;
+
+    #416000
+    r_spi_ss <= 0;
+    r_spi_mosi <= 1;
+    #104000
+    r_spi_mosi <= 0;
+    #104000
+    r_spi_mosi <= 1;
     #104000
     r_spi_mosi <= 0;
     #104000
@@ -47,7 +70,27 @@ module spi_input_tb();
     #104000
     r_spi_mosi <= 0;
     #104000
+    r_spi_mosi <= 1;
+    #104000
     r_spi_mosi <= 0;
+    r_spi_ss <= 1;
+
+
+    #416000
+    r_spi_ss <= 0;
+    r_spi_mosi <= 1;
+    #104000
+    r_spi_mosi <= 0;
+    #104000
+    r_spi_mosi <= 1;
+    #104000
+    r_spi_mosi <= 1;
+    #104000
+    r_spi_mosi <= 1;
+    #104000
+    r_spi_mosi <= 1;
+    #104000
+    r_spi_mosi <= 1;
     #104000
     r_spi_mosi <= 0;
     #104000
@@ -62,18 +105,19 @@ module spi_input_tb();
     #104000
     r_spi_mosi <= 1;
     #104000
+    r_spi_mosi <= 0;
+    #104000
     r_spi_mosi <= 1;
     #104000
-    r_spi_mosi <= 0;
+    r_spi_mosi <= 1;
     #104000
-    r_spi_mosi <= 0;
+    r_spi_mosi <= 1;
     #104000
-    r_spi_mosi <= 0;
-    #104000
-    r_spi_mosi <= 0;
+    r_spi_mosi <= 1;
     #104000
     r_spi_mosi <= 1;
     r_spi_ss <= 1;
+
   end
 
 endmodule
