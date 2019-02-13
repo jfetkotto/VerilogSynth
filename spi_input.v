@@ -11,7 +11,8 @@ module spi_input(
   i_spi_mosi,
   i_spi_ss,
   o_spi_miso,
-  o_data
+  o_data,
+  o_data_load
 );
 
   input i_sys_clk;
@@ -20,6 +21,8 @@ module spi_input(
   input i_spi_ss;
   output o_spi_miso;
   output reg [7:0] o_data;
+
+  output o_data_load;
 
   reg [2:0] r_counter = 3'b000;
   reg [7:0] r_shift_reg = 8'h00;
@@ -31,7 +34,9 @@ module spi_input(
 
 
   assign f_data_out = r_counter == 0 ? 1 : 0;
-  
+ 
+  assign o_data_load = f_data_out;
+
   assign o_spi_miso = r_spi_miso;
 
   // Register all inputs on system clock edge

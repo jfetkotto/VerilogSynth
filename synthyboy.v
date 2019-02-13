@@ -34,10 +34,20 @@ module synthyboy(
   wire [15:0] w_noise_to_mux;
   wire [15:0] w_saw_to_mux;
   wire [15:0] w_mux_out;
-  
-    wire [15:0] w_convert_out;
 
-  wire [7:0] w_spi_to_fcw;
+  wire [15:0] w_convert_out;
+
+  wire [7:0] w_spi_to_brain;
+  wire w_spi_to_data_load;
+
+  wire [7:0] w_brain_to_osc1_wave;
+  wire [23:0] w_brain_to_osc1_freq;
+  wire [15:0] w_brain_to_osc1_phase;
+  wire [15:0] w_brain_to_osc1_amp;
+  wire [7:0] w_brain_to_osc2_wave;
+  wire [23:0] w_brain_to_osc2_freq;
+  wire [15:0] w_brain_to_osc2_phase;
+  wire [15:0] w_brain_to_osc2_amp;
 
 
   clock_5MHz CLK5MHZ(
@@ -51,17 +61,31 @@ module synthyboy(
     .i_spi_mosi(i_spi_mosi),
     .i_spi_ss(i_spi_ss),
     .o_spi_miso(o_spi_miso),
-    .o_data(w_spi_to_fcw)
+    .o_data(w_spi_to_brain),
+    .o_data_load(w_spi_to_data_load)
+  );
+
+  brain BRAIN(
+    .i_data(w_spi_to_brain),
+    .i_data_load(w_spi_to_data_load),
+    .o_osc1_wave(w_brain_to_osc1_wave),
+    .o_osc1_freq(w_brain_to_osc1_freq),
+    .o_osc1_phase(w_brain_to_osc1_phase),
+    .o_osc1_amp(w_brain_to_osc1_amp),
+    .o_osc2_wave(w_brain_to_osc2_wave),
+    .o_osc2_freq(w_brain_to_osc2_freq),
+    .o_osc2_phase(w_brain_to_osc2_phase),
+    .o_osc2_amp(w_brain_to_osc2_amp)
   );
 
   phase_accu PHASE_ACCU(
     .i_clk5MHz(w_clk5),
-    .i_fcw({w_spi_to_fcw,16'hffff}),
+    .i_fcw(w_brain_to_osc1_freq),
     .o_16bit_addr(w_addr)
   );
 
   wave_mux WAVE_MUX(
-    .i_sel(i_mux_sel),
+    .i_sel(w_brain_to_osc1_wave[2:0]),
     .i_sine(w_sine_to_mux),
     .i_saw(w_saw_to_mux),
     .i_square(w_square_to_mux),
@@ -79,7 +103,7 @@ module synthyboy(
   amp AMP(
     .i_clk(w_clk5),
     .i_wave(w_convert_out),
-    .i_amp(16'hffff),
+    .i_amp(w_brain_to_osc1_amp),
     .o_data(o_data)
   );
 
