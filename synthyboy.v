@@ -7,7 +7,6 @@
 
 module synthyboy(
   i_clk50mhz,
-  i_mux_sel,
   i_spi_clk,
   i_spi_mosi,
   o_spi_miso,
@@ -17,7 +16,6 @@ module synthyboy(
 
   input i_clk50mhz;
 
-  input [2:0] i_mux_sel;
   input i_spi_clk;
   input i_spi_mosi;
   input i_spi_ss;
