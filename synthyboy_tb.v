@@ -62,6 +62,10 @@ module synthyboy_new_tb();
 
 
   always begin
+    $display("...........................................");
+    $display("... Synthyboy Testbench Running");
+    $display("...........................................");
+    
     /* JUNK */
     spi_send(`NULL_BYTE);
     
@@ -84,23 +88,36 @@ module synthyboy_new_tb();
     spi_send(`NULL_BYTE);
 
     #4160000;
-    /* OSC1 wave => noise*/
-    spi_send(`OSC1_WAVE);
-    spi_send(8'h00);
-    spi_send(`NULL_BYTE);
-    
-    #4160000;
     /* OSC1 wave => triangle*/
     spi_send(`OSC1_WAVE);
     spi_send(8'h01);
     spi_send(`NULL_BYTE);
 
+    /* OSC1 amp => 0x7fff */
+    #4160000;
+    spi_send(`OSC1_AMP);
+    spi_send(8'hff);
+    spi_send(8'h7f);
+    spi_send(`NULL_BYTE);
+
+    #4160000;
+    #4160000;
     #4160000;
     /* OSC1 wave => saw */
     spi_send(`OSC1_WAVE);
     spi_send(8'h02);
     spi_send(`NULL_BYTE);
 
+    /* OSC1 amp => 0x3fff */
+    #4160000;
+    spi_send(`OSC1_AMP);
+    spi_send(8'hff);
+    spi_send(8'h3f);
+    spi_send(`NULL_BYTE);
+
+
+    #4160000;
+    #4160000;
     #4160000;
     /* OSC1 wave => square */
     spi_send(`OSC1_WAVE);
