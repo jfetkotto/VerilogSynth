@@ -24,18 +24,18 @@ module brain(
   output reg [15:0] o_osc2_amp;
 
   // States
-  parameter idle = 0;
-  parameter osc1_wave = 1;
-  parameter osc1_freq = 2;
-  parameter osc1_phase = 3;
-  parameter osc1_amp = 4;
-  parameter osc2_wave = 5;
-  parameter osc2_freq = 6;
-  parameter osc2_phase = 7;
-  parameter osc2_amp = 8;
-  parameter shift1 = 9;
-  parameter shift2 = 10;
-  parameter data_out = 11;
+  parameter idle = 0,
+            osc1_wave = 1,
+            osc1_freq = 2,
+            osc1_phase = 3,
+            osc1_amp = 4,
+            osc2_wave = 5,
+            osc2_freq = 6,
+            osc2_phase = 7,
+            osc2_amp = 8,
+            shift1 = 9,
+            shift2 = 10,
+            data_out = 11;
   // Initial state
   reg [3:0] state = idle;
 
