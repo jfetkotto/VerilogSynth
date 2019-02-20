@@ -7,12 +7,9 @@
 */
 
 module noise(
-  i_clk,
-  o_data
+  input i_clk,
+  output reg signed [15:0] o_data
 );
-
-  input i_clk;
-  output reg signed [15:0] o_data;
 
   reg [0:15] r_shift16 = 16'hdead;
 

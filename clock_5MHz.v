@@ -9,12 +9,9 @@
 */
 
 module clock_5MHz(
-  i_clk50mhz,
-  o_clk5mhz
+  input i_clk50mhz,
+  output o_clk5mhz
 );
-
-  input i_clk50mhz;
-  output o_clk5mhz;
 
   reg [2:0] r_count = 0;
   reg r_clk = 0;

@@ -1,13 +1,8 @@
 module sine_wave(
-  i_clk,
-  i_addr,
-  o_data
+  input i_clk,
+  input [15:0] i_addr,
+  output reg [15:0] o_data
 );
-
-  input i_clk;
-  input [15:0] i_addr;
-
-  output reg [15:0] o_data;
 
   wire [13:0] w_saddr_to_lut;
   wire w_neg;

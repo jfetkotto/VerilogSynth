@@ -1,27 +1,15 @@
 module brain(
-  i_data,
-  i_data_load,
-  o_osc1_wave,
-  o_osc1_freq,
-  o_osc1_phase,
-  o_osc1_amp,
-  o_osc2_wave,
-  o_osc2_freq,
-  o_osc2_phase,
-  o_osc2_amp
+  input [7:0] i_data,
+  input i_data_load,
+  output reg [7:0] o_osc1_wave,
+  output reg [23:0] o_osc1_freq,
+  output reg [15:0] o_osc1_phase,
+  output reg [15:0] o_osc1_amp,
+  output reg [7:0] o_osc2_wave,
+  output reg [23:0] o_osc2_freq,
+  output reg [15:0] o_osc2_phase,
+  output reg [15:0] o_osc2_amp
 );
-
-  input [7:0] i_data;
-  input i_data_load;
-
-  output reg [7:0] o_osc1_wave;
-  output reg [23:0] o_osc1_freq;
-  output reg [15:0] o_osc1_phase;
-  output reg [15:0] o_osc1_amp;
-  output reg [7:0] o_osc2_wave;
-  output reg [23:0] o_osc2_freq;
-  output reg [15:0] o_osc2_phase;
-  output reg [15:0] o_osc2_amp;
 
   // States
   parameter idle = 0,

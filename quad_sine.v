@@ -1,13 +1,9 @@
 module quad_sine(
-  i_clk,
-  i_addr,
-  o_data
+  input i_clk,
+  input [13:0] i_addr,
+  output reg [15:0] o_data
 );
 
-  input i_clk;
-
-  input [13:0] i_addr;
-  output reg [15:0] o_data;
   // ROM for LUT, 16x16
   (* romstyle = "M9K" *)
   reg [15:0] r_lut [0:(2**14)-1];

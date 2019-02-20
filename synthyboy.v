@@ -6,23 +6,13 @@
 */
 
 module synthyboy(
-  i_clk50mhz,
-  i_spi_clk,
-  i_spi_mosi,
-  o_spi_miso,
-  i_spi_ss,
-  o_data
+  input i_clk50mhz,
+  input i_spi_clk,
+  input i_spi_mosi,
+  output o_spi_miso,
+  input i_spi_ss,
+  output [15:0] o_data
 );
-
-  input i_clk50mhz;
-
-  input i_spi_clk;
-  input i_spi_mosi;
-  input i_spi_ss;
-
-
-  output o_spi_miso;
-  output [15:0] o_data;
 
   wire w_clk5;
   wire [15:0] w_addr;

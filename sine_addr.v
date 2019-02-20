@@ -1,15 +1,9 @@
 module sine_addr(
-  i_clk,
-  i_addr,
-  o_addr,
-  o_neg
+  input i_clk,
+  input [15:0] i_addr,
+  output reg [13:0] o_addr,
+  output reg o_neg
 );
-
-  input i_clk;
-  input [15:0] i_addr;
-  output reg [13:0] o_addr;
-
-  output reg o_neg = 0;
 
   always @ (posedge i_clk)
   begin
