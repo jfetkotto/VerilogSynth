@@ -13,7 +13,7 @@
 /* Kick for FSM */
 `define NULL_BYTE 8'h00
 
-module synthyboy_new_tb();
+module synthyboy_tb();
 
   reg r_clk50 = 0;
   
@@ -49,6 +49,14 @@ module synthyboy_new_tb();
     end
   endtask
 
+
+  initial begin
+    $display("...........................................");
+    $display("... Synthyboy Testbench");
+    $display("...........................................");
+  end
+
+
   always 
     #10 r_clk50 <= !r_clk50;
 
@@ -62,17 +70,14 @@ module synthyboy_new_tb();
 
 
   always begin
-    $display("...........................................");
-    $display("... Synthyboy Testbench Running");
-    $display("...........................................");
-    
-    /* JUNK */
+   /* JUNK */
     spi_send(`NULL_BYTE);
     
     /* OSC1 wave => Sine*/
     spi_send(`OSC1_WAVE);
     spi_send(8'h05);
     spi_send(`NULL_BYTE);
+    $display("%d nS : OSC1_WAVE => Sine", $time);
 
     /* OSC1 Freq => 0x00ffff */
     spi_send(`OSC1_FREQ);
@@ -80,18 +85,21 @@ module synthyboy_new_tb();
     spi_send(8'hff);
     spi_send(8'h00);
     spi_send(`NULL_BYTE);
+    $display("%d nS : OSC1_FREQ => 0x00ffff", $time);
 
     /* OSC1 amp => 0xffffff */
     spi_send(`OSC1_AMP);
     spi_send(8'hff);
     spi_send(8'hff);
     spi_send(`NULL_BYTE);
+    $display("%d nS : OSC1_AMP => 0xffff", $time);
 
     #4160000;
     /* OSC1 wave => triangle*/
     spi_send(`OSC1_WAVE);
     spi_send(8'h01);
     spi_send(`NULL_BYTE);
+    $display("%d nS : OSC1_WAVE => Triangle", $time);
 
     /* OSC1 amp => 0x7fff */
     #4160000;
@@ -99,6 +107,7 @@ module synthyboy_new_tb();
     spi_send(8'hff);
     spi_send(8'h7f);
     spi_send(`NULL_BYTE);
+    $display("%d nS : OSC1_AMP => 0x7fff", $time);
 
     #4160000;
     #4160000;
@@ -107,6 +116,7 @@ module synthyboy_new_tb();
     spi_send(`OSC1_WAVE);
     spi_send(8'h02);
     spi_send(`NULL_BYTE);
+    $display("%d nS : OSC1_WAVE => Saw", $time);
 
     /* OSC1 amp => 0x3fff */
     #4160000;
@@ -114,7 +124,17 @@ module synthyboy_new_tb();
     spi_send(8'hff);
     spi_send(8'h3f);
     spi_send(`NULL_BYTE);
+    $display("%d nS : OSC1_AMP => 0x3fff", $time);
 
+    #4160000;
+    #4160000;
+    #4160000;
+    spi_send(`OSC1_FREQ);
+    spi_send(8'hff);
+    spi_send(8'hff);
+    spi_send(8'h03);
+    spi_send(`NULL_BYTE);
+    $display("%d nS : OSC1_FREQ => 0x03ffff", $time);
 
     #4160000;
     #4160000;
@@ -123,12 +143,14 @@ module synthyboy_new_tb();
     spi_send(`OSC1_WAVE);
     spi_send(8'h03);
     spi_send(`NULL_BYTE);
+    $display("%d nS : OSC1_WAVE => square", $time);
 
 
     /* JUNK */
     spi_send(`NULL_BYTE);
     #4160000;
     #4160000;
+    $display("%d nS : TEST PATTERN END", $time);
   end
 
 endmodule
