@@ -16,14 +16,14 @@
 module synthyboy_tb();
 
   reg r_clk50 = 0;
-  
+
   reg r_spi_clk = 0;
   reg r_spi_mosi;
   reg r_spi_ss = 1;
 
   wire [15:0] w_data;
   wire w_spi_miso;
-  
+
   synthyboy UUT(
     .i_clk50mhz(r_clk50),
     .i_spi_clk(r_spi_clk),
@@ -57,7 +57,7 @@ module synthyboy_tb();
   end
 
 
-  always 
+  always
     #10 r_clk50 <= !r_clk50;
 
   always begin
@@ -68,11 +68,10 @@ module synthyboy_tb();
       endcase
   end
 
-
   always begin
    /* JUNK */
     spi_send(`NULL_BYTE);
-    
+
     /* OSC1 wave => Sine*/
     spi_send(`OSC1_WAVE);
     spi_send(8'h05);
