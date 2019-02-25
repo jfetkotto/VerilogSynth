@@ -24,6 +24,7 @@ module brain(
             shift1 = 9,
             shift2 = 10,
             data_out = 11;
+
   // Initial state
   reg [3:0] state = idle;
 
