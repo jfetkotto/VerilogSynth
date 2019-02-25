@@ -16,6 +16,7 @@ module synthyboy(
 
   wire w_clk5;
   wire [15:0] w_addr[0:1];
+  wire [15:0] w_paccu_to_padjust[0:1];
   wire [15:0] w_sine_to_mux[0:1];
   wire [15:0] w_square_to_mux[0:1];
   wire [15:0] w_tri_to_mux[0:1];
@@ -32,17 +33,17 @@ module synthyboy(
   wire [23:0] w_brain_to_osc_freq[0:1];
   wire [15:0] w_brain_to_osc_phase[0:1];
   wire [15:0] w_brain_to_osc_amp[0:1];
-/*
-  wire [7:0] w_brain_to_osc_wave;
-  wire [23:0] w_brain_to_osc_freq;
-  wire [15:0] w_brain_to_osc_phase;
-  wire [15:0] w_brain_to_osc_amp;
-*/
 
   wire [15:0] temp_o[0:1];
 
+  reg [16:0] r_out = 17'h000;
 
-  assign o_data = temp_o[0];
+  assign o_data = r_out[15:0];
+
+  always @ (posedge w_clk5)
+  begin
+    r_out <= (temp_o[0] + temp_o[1]) >> 1;
+  end
 
   clock_5MHz CLK5MHZ(
     .i_clk50mhz(i_clk50mhz),
@@ -78,7 +79,14 @@ module synthyboy(
       phase_accu PHASE_ACCU(
         .i_clk5MHz(w_clk5),
         .i_fcw(w_brain_to_osc_freq[i]),
-        .o_16bit_addr(w_addr[i])
+        .o_16bit_addr(w_paccu_to_padjust[i])
+      );
+
+      phase_adjust PHASE_ADJUST(
+        .i_clk(w_clk5),
+        .i_addr(w_paccu_to_padjust[i]),
+        .i_adjust(w_brain_to_osc_phase[i]),
+        .o_addr(w_addr[i])
       );
 
       wave_mux WAVE_MUX(

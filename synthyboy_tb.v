@@ -5,10 +5,10 @@
 `define OSC1_FREQ 8'h02
 `define OSC1_PHASE 8'h03
 `define OSC1_AMP 8'h04
-`define OSC2_WAVE 8'h01
-`define OSC2_FREQ 8'h02
-`define OSC2_PHASE 8'h03
-`define OSC2_AMP 8'h04
+`define OSC2_WAVE 8'h11
+`define OSC2_FREQ 8'h12
+`define OSC2_PHASE 8'h13
+`define OSC2_AMP 8'h14
 
 /* Kick for FSM */
 `define NULL_BYTE 8'h00
@@ -86,12 +86,45 @@ module synthyboy_tb();
     spi_send(`NULL_BYTE);
     $display("%d nS : OSC1_FREQ => 0x00ffff", $time);
 
+    spi_send(`OSC1_PHASE);
+    spi_send(8'h00);
+    spi_send(8'h00);
+    spi_send(`NULL_BYTE);
+
     /* OSC1 amp => 0xffffff */
     spi_send(`OSC1_AMP);
     spi_send(8'hff);
     spi_send(8'hff);
     spi_send(`NULL_BYTE);
     $display("%d nS : OSC1_AMP => 0xffff", $time);
+
+    /* OSC2 wave => Sine */
+    spi_send(`OSC2_WAVE);
+    spi_send(8'h05);
+    spi_send(`NULL_BYTE);
+    $display("%d ns : OSC2_WAVE => Sine", $time);
+
+    /* OSC2 Freq => 0x00ffff */
+    spi_send(`OSC2_FREQ);
+    spi_send(8'hff);
+    spi_send(8'hff);
+    spi_send(8'h07);
+    spi_send(`NULL_BYTE);
+    $display("%d nS : OSC2_FREQ => 0x00ffff", $time);
+
+    spi_send(`OSC2_PHASE);
+    spi_send(8'hff);
+    spi_send(8'h75);
+    spi_send(`NULL_BYTE);
+
+    /* OSC2 amp => 0xffffff */
+    spi_send(`OSC2_AMP);
+    spi_send(8'hff);
+    spi_send(8'hff);
+    spi_send(`NULL_BYTE);
+    $display("%d nS : OSC2_AMP => 0xffff", $time);
+
+
 
     #4160000;
     /* OSC1 wave => triangle*/
@@ -116,6 +149,30 @@ module synthyboy_tb();
     spi_send(8'h02);
     spi_send(`NULL_BYTE);
     $display("%d nS : OSC1_WAVE => Saw", $time);
+
+    spi_send(`OSC2_FREQ);
+    spi_send(8'hff);
+    spi_send(8'hff);
+    spi_send(8'h00);
+    spi_send(`NULL_BYTE);
+
+    #4160000;
+    spi_send(`OSC1_WAVE);
+    spi_send(8'h00);
+    spi_send(`NULL_BYTE);
+
+    #4160000;
+    spi_send(`OSC1_WAVE);
+    spi_send(8'h01);
+    spi_send(`NULL_BYTE);
+
+    #4160000;
+    #4160000;
+    #4160000;
+    spi_send(`OSC1_PHASE);
+    spi_send(8'hff);
+    spi_send(8'h03);
+    spi_send(`NULL_BYTE);
 
     /* OSC1 amp => 0x3fff */
     #4160000;
@@ -151,5 +208,4 @@ module synthyboy_tb();
     #4160000;
     $display("%d nS : TEST PATTERN END", $time);
   end
-
 endmodule
