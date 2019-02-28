@@ -4,7 +4,6 @@
 * DATE: Jan 2019
 * DESCRIPTION: Describes the architecture of the synth
 */
-
 module synthyboy(
   input i_clk50mhz,
   input i_spi_clk,
@@ -75,7 +74,7 @@ module synthyboy(
 
   genvar i;
   generate
-    for(i=0;i<2;i=i+1) begin: loop
+    for ( i = 0; i < 2; i = i+1) begin: loop
       phase_accu PHASE_ACCU(
         .i_clk5MHz(w_clk5),
         .i_fcw(w_brain_to_osc_freq[i]),
