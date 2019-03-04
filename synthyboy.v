@@ -14,30 +14,30 @@ module synthyboy(
 );
 
   wire w_clk5;
-  wire [15:0] w_addr[0:1];
-  wire [15:0] w_paccu_to_padjust[0:1];
-  wire [15:0] w_sine_to_mux[0:1];
-  wire [15:0] w_square_to_mux[0:1];
-  wire [15:0] w_tri_to_mux[0:1];
-  wire [15:0] w_noise_to_mux[0:1];
-  wire [15:0] w_saw_to_mux[0:1];
-  wire [15:0] w_mux_out[0:1];
+  wire [15:0] w_addr                [0:1];
+  wire [15:0] w_paccu_to_padjust    [0:1];
+  wire [15:0] w_sine_to_mux         [0:1];
+  wire [15:0] w_square_to_mux       [0:1];
+  wire [15:0] w_tri_to_mux          [0:1];
+  wire [15:0] w_noise_to_mux        [0:1];
+  wire [15:0] w_saw_to_mux          [0:1];
+  wire [15:0] w_mux_out             [0:1];
 
-  wire [15:0] w_convert_out[0:1];
+  wire [15:0] w_convert_out         [0:1];
 
   wire [7:0] w_spi_to_brain;
   wire w_spi_to_data_load;
 
-  wire [7:0] w_brain_to_osc_wave[0:1];
-  wire [23:0] w_brain_to_osc_freq[0:1];
-  wire [15:0] w_brain_to_osc_phase[0:1];
-  wire [15:0] w_brain_to_osc_amp[0:1];
+  wire [7:0] w_brain_to_osc_wave    [0:1];
+  wire [23:0] w_brain_to_osc_freq   [0:1];
+  wire [15:0] w_brain_to_osc_phase  [0:1];
+  wire [15:0] w_brain_to_osc_amp    [0:1];
 
-  wire [15:0] temp_o[0:1];
+  wire [15:0] temp_o                [0:1];
 
   reg [16:0] r_out = 17'h000;
 
-  assign o_data = r_out[15:0];
+  assign o_data = r_out             [15:0];
 
   always @ (posedge w_clk5)
   begin
