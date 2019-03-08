@@ -51,6 +51,7 @@ To adjust *OSC 2* to Half the maximum frequency
 send_SPI(0x14); // Control Code
 send_SPI(0xff); // LSB of data
 send_SPI(0xff);
-send_SPI(0x7f);
+send_SPI(0x7f); // MSB of data
+send_SPI(0x00); // Kick state machine
 ```
 
