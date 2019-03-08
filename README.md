@@ -2,6 +2,7 @@
 Synthesizer core written in Verilog.
 
 Full project utilises a NodeMCU ESP module to take OSC input over WiFi and communicate with the synth core.
+The Microcontroller part of the project can be found [here](https://github.com/YungThunder/ArduinoSPI/).
 
 ## Implementation
 FPGA exposes 2 Oscillators and outputs unsigned on 16 data lines.
