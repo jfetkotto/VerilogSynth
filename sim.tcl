@@ -13,7 +13,7 @@ add wave -radix hexadecimal -position end  sim:/synthyboy_tb/UUT/w_brain_to_osc_
 add wave -radix hexadecimal -position end  sim:/synthyboy_tb/UUT/w_brain_to_osc_freq
 add wave -radix hexadecimal -position end  sim:/synthyboy_tb/UUT/w_brain_to_osc_phase
 add wave -radix hexadecimal -position end  sim:/synthyboy_tb/UUT/w_brain_to_osc_amp
-add wave -clampanalog 1 -max 65535 -min 0 -color magenta -position end  sim:/synthyboy_tb/UUT/temp_o
+add wave -position end  sim:/synthyboy_tb/UUT/temp_o
 add wave -clampanalog 1 -max 65535 -min 0 -color blue -position end  sim:/synthyboy_tb/UUT/o_data
 
 property wave -format analog -height 100 -radix unsigned /synthyboy_tb/UUT/o_data
