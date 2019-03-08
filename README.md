@@ -15,7 +15,6 @@ Control of the osillators is via SPI MODE 0 interface. Send 1 control byte, foll
 |     0x02     |    Phase     |    2 Bytes   |
 |     0x03     |  Amplitude   |    2 Bytes   |
 |     0x04     |  Frequency   |    3 Bytes   |
-| ------------------------------------------ |
 
 ### OSC 2
 
@@ -25,7 +24,6 @@ Control of the osillators is via SPI MODE 0 interface. Send 1 control byte, foll
 |     0x12     |    Phase     |    2 Bytes   |
 |     0x13     |  Amplitude   |    2 Bytes   |
 |     0x14     |  Frequency   |    3 Bytes   |
-| ------------------------------------------ |
 
 
 ### Wavetype
@@ -36,7 +34,6 @@ Control of the osillators is via SPI MODE 0 interface. Send 1 control byte, foll
 |     0x02     |     Saw      |
 |     0x03     |    Square    |
 |     0x04     |     Sine     |
-| --------------------------- |
 
 ### Controlling the synth
 
