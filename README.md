@@ -55,3 +55,5 @@ send_SPI(0x7f); // MSB of data
 send_SPI(0x00); // Kick state machine
 ```
 
+### make_lut.py
+the `scripts` folder contains `make_lut.py`. This script gan be used to view and generate sine wave lookup tables in formats readable by Verilog/Quartus.
