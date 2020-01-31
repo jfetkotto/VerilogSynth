@@ -54,6 +54,8 @@ module synthyboy_tb();
     $display("...........................................");
     $display("... Synthyboy Testbench");
     $display("...........................................");
+    $dumpfile("synth_test.vcd");
+    $dumpvars(0, synthyboy_tb);
   end
 
 

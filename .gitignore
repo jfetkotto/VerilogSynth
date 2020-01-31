@@ -1,3 +1,5 @@
+*.vcd
+*.vvp
 scripts/lutdata
 work
 incremental_db
